@@ -136,18 +136,20 @@
             // dateTimePicker1
             // 
             this.dateTimePicker1.Font = new System.Drawing.Font("Arial Narrow", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePicker1.Location = new System.Drawing.Point(12, 240);
+            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePicker1.Location = new System.Drawing.Point(45, 244);
             this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(296, 25);
+            this.dateTimePicker1.Size = new System.Drawing.Size(97, 25);
             this.dateTimePicker1.TabIndex = 13;
             // 
             // dateTimePicker2
             // 
             this.dateTimePicker2.CalendarMonthBackground = System.Drawing.SystemColors.Info;
             this.dateTimePicker2.Font = new System.Drawing.Font("Arial Narrow", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePicker2.Location = new System.Drawing.Point(12, 297);
+            this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePicker2.Location = new System.Drawing.Point(45, 301);
             this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(296, 25);
+            this.dateTimePicker2.Size = new System.Drawing.Size(97, 25);
             this.dateTimePicker2.TabIndex = 14;
             // 
             // label2
@@ -225,7 +227,7 @@
             this.Controls.Add(this.button1);
             this.Name = "NOTAFISCAL";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Nota_FiscaL";
+            this.Text = "Lançar Nota Fiscal";
             this.TopMost = true;
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -45,6 +45,7 @@ namespace APPFat
                 //envia o comando para o banco de dados 
                 MessageBox.Show("DEU CERTO");
                 //da o feedback ao usuario que a operação funcionou
+                Nboleto.Clear(); Nnota.Clear();valor.Clear();NomeFunc.Clear();RTB.Clear();
             }
             catch (Exception ex){
 
@@ -53,7 +54,7 @@ namespace APPFat
             
             finally { con.Close(); }
         }
-
+        
         }
 
     

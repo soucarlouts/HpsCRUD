@@ -20,6 +20,7 @@ namespace APPFat
             listView1.AllowColumnReorder = true;
             listView1.FullRowSelect = true;
             listView1.GridLines = true;
+            
 
             listView1.Columns.Add("ID", 30, HorizontalAlignment.Left);
             listView1.Columns.Add("Nome", 150, HorizontalAlignment.Left);
@@ -33,50 +34,11 @@ namespace APPFat
 
         private void Form4_Load(object sender, EventArgs e)
         {
-            CarregarDados();
+        InitializeComponent();
         }
 
-        private void CarregarDados()
-        {
-            try
-            {
-                using (con = new MySqlConnection(data_sql))
-                {
-                    string sql = "SELECT * FROM nf";
-                    using (MySqlCommand command = new MySqlCommand(sql, con))
-                    {
-                        con.Open();
 
-                        using (MySqlDataReader reader = command.ExecuteReader())
-                        {
-                            listView1.Items.Clear();
-
-                            while (reader.Read())
-                            {
-                                string id = reader.GetInt32(0).ToString();
-                                string nome = reader.GetString(1);
-                                string boleto = reader.GetString(2);
-                                string nota = reader.GetString(3);
-                                decimal valor = reader.GetDecimal(4);
-                                DateTime DataLancamento = reader.GetDateTime(5);
-                                DateTime DataVencimento = reader.GetDateTime(6);
-                                string descricao = reader.GetString(7);
-
-                                string[] row = { id, nome, boleto, nota, valor.ToString(), DataLancamento.ToString(), DataVencimento.ToString(), descricao };
-                                var linha_listView = new ListViewItem(row);
-                                listView1.Items.Add(linha_listView);
-                            }
-                        }
-                    }
-                }
-                MessageBox.Show("Dados carregados com sucesso.");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Erro ao carregar dados: " + ex.Message);
-            }
-        }
-
+        
         private void buscar_Click_1(object sender, EventArgs e)
         {
             try
@@ -101,12 +63,12 @@ namespace APPFat
                                 string nome = reader.GetString(1);
                                 string boleto = reader.GetString(2);
                                 string nota = reader.GetString(3);
-                                string valor = reader.GetString(4);
+                                decimal valor = reader.GetDecimal(4);
                                 string DataLançamento = reader.GetString(5);
                                 string DataVencimento = reader.GetString(6);
                                 string descricao = reader.GetString(7);
 
-                                string[] row = { id, nome, boleto, nota, valor, DataLançamento, DataVencimento, descricao };
+                                string[] row = { id, nome, boleto, nota, valor.ToString("f2"), DataLançamento, DataVencimento, descricao };
                                 var linha_listView = new ListViewItem(row);
                                 listView1.Items.Add(linha_listView);
                             }
@@ -120,5 +82,55 @@ namespace APPFat
                 MessageBox.Show("Erro: " + ex.Message);
             }
         }
+
+        private void BtnSalvar_Click(object sender, EventArgs e)
+        {
+            {
+                try
+                {
+                    string idText = "%" + textBox1.Text + "%";
+
+                    using (con = new MySqlConnection(data_sql))
+
+                    {
+
+                        string sql = "ALTER FROM nf WHERE id LIKE = @idText";
+                        using (MySqlCommand command = new MySqlCommand(sql, con))
+                        {
+                            con.Open();
+
+                            using (MySqlDataReader reader = command.ExecuteReader())
+                            {
+                                listView1.Items.Clear();
+
+                                while (reader.Read())
+                                {
+                                    string id = reader.GetInt32(0).ToString();
+                                    string nome = reader.GetString(1);
+                                    string boleto = reader.GetString(2);
+                                    string nota = reader.GetString(3);
+                                    double valor = reader.GetDouble(4);
+                                    DateTime DataLancamento = reader.GetDateTime(5);
+                                    DateTime DataVencimento = reader.GetDateTime(6);
+                                    string descricao = reader.GetString(7);
+
+                                    string[] row = { id, nome, boleto, nota, valor.ToString(), DataLancamento.ToString(), DataVencimento.ToString(), descricao };
+                                    var linha_listView = new ListViewItem(row);
+                                    listView1.Items.Add(linha_listView);
+                                }
+                            }
+                        }
+                    }
+                    MessageBox.Show("Dados alterados com sucesso");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Erro ao alterar os dados: " + ex.Message);
+                }
+                finally { con.Close(); }
+            }
+
+        }
     }
 }
+      

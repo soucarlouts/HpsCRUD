@@ -29,9 +29,9 @@ namespace APPFat
         {
             try {
 
-                 string data_sql = "datasource=localhost;username=root;password=98950021Gbnm@;database=dbtest;";
-
+                string data_sql = "datasource=localhost;username=root;password=98950021Gbnm@;database=dbtest;";
                 con = new MySqlConnection(data_sql);
+
                 string sql = "INSERT INTO fornecedor (nome,cnpj,atividade,celular ,email, endereco) VALUES " +
                     "('"+NomeForn.Text+"','"+CnpjTextBOX.Text+"','"+AreaAtuaçãoTextBox.Text+"', '"+CelularTextBox.Text+"', '"+EmailText.Text+"', '"+textEndereço.Text+"');";
                 MySqlCommand comand = new MySqlCommand(sql, con);
